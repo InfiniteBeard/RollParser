@@ -1,0 +1,10 @@
+.vs/*
+RollParser/bin/*
+RollParser/data/*
+RollParser/obj/*
+RollParserTester/bin/*
+RollParserTester/data/*
+RollParserTests/obj/*
+RollParserTests/bin/*
+RollParserTests/data/*
+RollParserTests/obj/*
