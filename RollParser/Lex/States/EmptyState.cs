@@ -7,11 +7,11 @@ namespace RollParser.Tokenizing.States
 {
     public class EmptyState : State
     {
-        private Lexer tokenizer;
+        private Lexer lexer;
 
-        public EmptyState(Lexer tokenizer)
+        public EmptyState(Lexer lexer)
         {
-            this.tokenizer = tokenizer;
+            this.lexer = lexer;
         }
 
         public override void EndOfEquation()
@@ -21,14 +21,14 @@ namespace RollParser.Tokenizing.States
 
         public override void Number(char num)
         {
-            tokenizer.AppendDigit(num);
-            tokenizer.CurrentState = tokenizer.NumberState;
+            lexer.AppendDigit(num);
+            lexer.CurrentState = lexer.NumberState;
         }
 
         public override void Operator(char op)
         {
-            tokenizer.AddOperator(op);
-            tokenizer.CurrentState = tokenizer.OperatorState;
+            lexer.AddOperator(op);
+            lexer.CurrentState = lexer.OperatorState;
         }
     }
 }

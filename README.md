@@ -6,12 +6,13 @@ This is a program for parsing equations that contain not only typical mathematic
 # Features
 
 ## Supported Numbers
-Currently only integers are supported.
+Currently only positive numbers are supported.
 
 ## Supported Operators
 The currently supported operators are (in order of operations):
-* ***d*** - Dice roll operator. The operand on the left of the 'd' specifies the number of dice. The operand on the right of the 'd' specifies the dice type. E.g. 2d6 means that a six sided die will be rolled twice. Each roll of the six sided die will be added together and the resulting sum will be the output of the dice roll operator.
+* ***d*** - Dice roll operator. The operand on the left of the 'd' specifies the number of dice. The operand on the right of the 'd' specifies the dice type. E.g. 2d6 means that a six sided die will be rolled twice. Each roll of the six sided die will be added together and the resulting sum will be the output of the dice roll operator. If a non integer number is passed to either operand it will be rounded to the nearest whole number.
 * ***\**** - Typical multiplication operator
+* ***/*** - Typical division operator
 * ***+*** - Typical addition operator
 * ***-*** - Typical subratraction operator
 

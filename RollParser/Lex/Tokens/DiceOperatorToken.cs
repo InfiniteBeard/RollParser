@@ -17,8 +17,8 @@ namespace RollParser.Tokenizing.Tokens
         public override double Execute(double diceNumber, double diceType)
         {
             int result = 0;
-            int convertedDiceType = Convert.ToInt32(diceType);
-            int convertedDiceNumber = Convert.ToInt32(diceNumber);
+            int convertedDiceType = ConvertDouble(diceType);
+            int convertedDiceNumber = ConvertDouble(diceNumber);
 
             for(int i = 0; i < convertedDiceNumber; ++i)
             {
@@ -27,10 +27,14 @@ namespace RollParser.Tokenizing.Tokens
             return Convert.ToDouble(result);
         }
 
-
         public override string ToString()
         {
             return "d";
+        }
+
+        private int ConvertDouble(double value)
+        {
+            return Convert.ToInt32(Math.Round(value, 0, MidpointRounding.AwayFromZero));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace RollParser.Tokenizing.Tokens
 
         private static HashSet<char> operators = new HashSet<char>
         {
-            'd', 'D', '+', '-', '*'
+            'd', 'D', '+', '-', '*', '/'
         };
         
 
@@ -34,6 +34,8 @@ namespace RollParser.Tokenizing.Tokens
                     return new SubtractionOperatorToken();
                 case '*':
                     return new MultiplicationOperatorToken();
+                case '/':
+                    return new DivisonOperatorToken();
                 default:
                     throw new UnsupportedOperatorException(op);
             }

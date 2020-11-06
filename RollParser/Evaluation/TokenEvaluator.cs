@@ -79,11 +79,12 @@ namespace RollParser.Evaluation
          *  
          *  tokens - the token sequence that whose dice operators will be evaluated
          */
-        public int Evaluate(List<Token> tokens)
+        public double Evaluate(List<Token> tokens)
         {
             RemoveEndOfEquationTokens(tokens);
             EvaluateBinaryOperator<DiceOperatorToken>(tokens);
             EvaluateBinaryOperator<MultiplicationOperatorToken>(tokens);
+            EvaluateBinaryOperator<DivisonOperatorToken>(tokens);
             EvaluateBinaryOperator<AdditionOperatorToken>(tokens);
             EvaluateBinaryOperator<SubtractionOperatorToken>(tokens);
             
@@ -96,7 +97,7 @@ namespace RollParser.Evaluation
                     {
 
                         NumberToken number = (NumberToken)tokens[0];
-                        return Convert.ToInt32(number.Number);
+                        return number.Number;
                     }
                     else
                     {

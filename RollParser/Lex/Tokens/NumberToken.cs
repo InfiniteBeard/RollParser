@@ -12,14 +12,6 @@ namespace RollParser.Tokenizing.Tokens
     {
         public double Number { get; private set; }
 
-
-
-
-        public NumberToken(int number)
-        {
-            this.Number = Convert.ToDouble(number);
-        }
-
         public NumberToken(double number)
         {
             this.Number = number;
@@ -28,13 +20,13 @@ namespace RollParser.Tokenizing.Tokens
 
         public static bool IsNumber(char potentialNumber)
         {
-            return Char.IsDigit(potentialNumber);
+            return Char.IsDigit(potentialNumber) || potentialNumber == '.';
         }
 
 
         public static NumberToken Create(string s)
         {
-            int number = int.Parse(s);
+            double number = double.Parse(s);
             return new NumberToken(number);
         }
 

@@ -15,13 +15,15 @@ namespace RollParserTests
         [TestMethod]
         public void AdditionOperator()
         {
-            string eq = " 1 + 4";
+            string eq = " 1.5 + 4.0";
+            double expected = 5.5;
             Lexer tokenizer = new Lexer();
             List<Token> tokens = tokenizer.Parse(eq);
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            Assert.AreEqual(5, evaluator.Evaluate(tokens));
+            double actual = evaluator.Evaluate(tokens);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -47,7 +49,7 @@ namespace RollParserTests
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            int results = evaluator.Evaluate(tokens);
+            double results = evaluator.Evaluate(tokens);
             if (!(lowBound <= results && results <= highBound))
             {
                 Assert.Fail(String.Format("Result should have fallen within {0} and {1} but was instead {2}", lowBound, highBound, results));
@@ -64,8 +66,8 @@ namespace RollParserTests
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            int results = evaluator.Evaluate(tokens);
-            Assert.AreEqual(expected, results);
+            double actual = evaluator.Evaluate(tokens);
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
@@ -79,7 +81,7 @@ namespace RollParserTests
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            int results = evaluator.Evaluate(tokens);
+            double results = evaluator.Evaluate(tokens);
             if (!(lowBound <= results && results <= highBound))
             {
                 Assert.Fail(String.Format("Result should have fallen within {0} and {1} but was instead {2}", lowBound, highBound, results));
@@ -97,7 +99,7 @@ namespace RollParserTests
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            int results = evaluator.Evaluate(tokens);
+            double results = evaluator.Evaluate(tokens);
             if (!(lowBound <= results && results <= highBound))
             {
                 Assert.Fail(String.Format("Result should have fallen within {0} and {1} but was instead {2}", lowBound, highBound, results));
@@ -105,21 +107,31 @@ namespace RollParserTests
         }
 
         [TestMethod]
-        public void MultiplicationAndDiceOperator()
+        public void DivisionOperator()
         {
-            string eq = "1d9 * 10";
-            int lowBound = -9;
-            int highBound = 10;
+            string eq = "5/2";
+            double expected = 2.5;
             Lexer tokenizer = new Lexer();
             List<Token> tokens = tokenizer.Parse(eq);
             TokenVerifier verifier = new TokenVerifier();
             Assert.IsTrue(verifier.Verify(tokens));
             TokenEvaluator evaluator = new TokenEvaluator();
-            int results = evaluator.Evaluate(tokens);
-            if (!(lowBound <= results && results <= highBound))
-            {
-                Assert.Fail(String.Format("Result should have fallen within {0} and {1} but was instead {2}", lowBound, highBound, results));
-            }
+            double actual = evaluator.Evaluate(tokens);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void MultiplicationAndDivisionOperator()
+        {
+            string eq = "2*5/2";
+            double expected = 5;
+            Lexer tokenizer = new Lexer();
+            List<Token> tokens = tokenizer.Parse(eq);
+            TokenVerifier verifier = new TokenVerifier();
+            Assert.IsTrue(verifier.Verify(tokens));
+            TokenEvaluator evaluator = new TokenEvaluator();
+            double actual = evaluator.Evaluate(tokens);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
